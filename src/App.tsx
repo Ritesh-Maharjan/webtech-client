@@ -3,6 +3,7 @@ import Service from "./component/Service";
 import About from "./component/About";
 import { useEffect, useRef, useState } from "react";
 import Navigation from "./component/Navigation";
+import Testimonial from "./component/Testimonial";
 
 function App() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -55,6 +56,8 @@ function App() {
       <Navigation activeSection={activeSection} />
       <Service ref={serviceRef} restBase={restBase} />
       <About ref={aboutRef} restBase={restBase} />
+      <Testimonial />
+
     </div>
   );
 }
