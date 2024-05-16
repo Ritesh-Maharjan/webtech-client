@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-// import Staffs from "component/Staff";
+import Staffs from "./Staff";
+import Accordion from "./Accordion";
 
 interface PageContent {
   id: number;
@@ -30,7 +31,8 @@ const About: React.FC<{ restBase: string }> = ({ restBase }) => {
     <div className="max-width">
       <h2>About Us</h2>
       <div dangerouslySetInnerHTML={{ __html: pageContent }} />
-			{/* <Staffs restBase={restBase} /> */}
+			<Staffs restBase={restBase} />
+			<Accordion />
     </div>
   );
 };
