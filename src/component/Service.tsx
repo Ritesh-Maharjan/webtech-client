@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import parse from "html-react-parser";
 
-// Define the type for your service data
 interface ServiceData {
   id: number;
   title: { rendered: string };
   content: { rendered: string };
-  // Add other fields as necessary
 }
 
 // Define the type for your service data
@@ -28,9 +26,11 @@ const Service: React.FC<{
   const [services, setServices] = useState<parsedServiceData[]>([]);
 
   useEffect(() => {
+    setServices([]);
     fetch(`${restBase}webtech-service`)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         data.map((serviceData: ServiceData) => {
           const title = serviceData.title.rendered;
           const { id } = serviceData;
@@ -40,7 +40,6 @@ const Service: React.FC<{
           if (Array.isArray(parsedContent)) {
             parsedContent.map((el) => {
               if (typeof el == "object") {
-                console.log(el);
                 const { type } = el;
                 const content = el.props.children;
                 contentData.push({ type, content });
@@ -62,17 +61,19 @@ const Service: React.FC<{
   }, []);
 
   return (
-    <div>
-      <h2>Services</h2>
+    <div className="max-width mb-24 h-fit md:mb-0 md:h-screen flex flex-wrap p-4">
+      <h2 className="my-6 text-4xl text-center w-full">Our Services</h2>
 
-      {services.map((service) => (
-        <div key={service.id}>
-          <h2>{service.title}</h2>
-          {service.contentData.map((content, index) => {
-            return <p key={index}>{content.content}</p>;
-          })}
-        </div>
-      ))}
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:flex gap-8">
+        {services.map((service) => (
+          <article key={service.id} className="flex flex-col gap-4 p-4">
+            <h3 className="font-semibold text-xl h-fit md:h-12">{service.title}</h3>
+            {service.contentData.map((content, index) => {
+              return <p className="text-justify" key={index}>{content.content}</p>;
+            })}
+          </article>
+        ))}
+      </section>
     </div>
   );
 };

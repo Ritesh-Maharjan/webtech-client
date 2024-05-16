@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <div className="min-h-screen relative flex items-center max-w-5xl mx-auto overflow-hidden">
+    <div className="max-width relative flex items-center">
       <Header />
       <div className="flex justify-between font-bold leading-loose relative tracking-wider flex-col uppercase w-full h-72 text-3xl xl:text-6xl p-4 ">
         <motion.h3
