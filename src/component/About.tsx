@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import Staffs from "./Staff";
 import Accordion from "./Accordion";
 
@@ -7,7 +7,11 @@ interface PageContent {
   content: { rendered: string };
 }
 
-const About: React.FC<{ restBase: string }> = ({ restBase }) => {
+interface AboutProps {
+  restBase: string;
+}
+
+const About = forwardRef<HTMLDivElement, AboutProps>(({ restBase }, ref) => {
   const [pageContent, setPageContent] = useState<string>("");
 
   useEffect(() => {
@@ -28,13 +32,13 @@ const About: React.FC<{ restBase: string }> = ({ restBase }) => {
   }, [restBase]);
 
   return (
-    <div className="max-width">
+    <div id="about" ref={ref} className="max-width">
       <h2>About Us</h2>
       <div dangerouslySetInnerHTML={{ __html: pageContent }} />
-			<Staffs restBase={restBase} />
-			<Accordion />
+      <Staffs restBase={restBase} />
+      <Accordion />
     </div>
   );
-};
+});
 
 export default About;
