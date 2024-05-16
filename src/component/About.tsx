@@ -1,5 +1,6 @@
+// About.tsx
 import React, { forwardRef, useEffect, useState } from "react";
-import Staffs from "./Staff";
+import Staff from "./Staff";
 import Accordion from "./Accordion";
 
 interface PageContent {
@@ -32,11 +33,31 @@ const About = forwardRef<HTMLDivElement, AboutProps>(({ restBase }, ref) => {
   }, [restBase]);
 
   return (
-    <div id="about" ref={ref} className="max-width">
-      <h2>About Us</h2>
-      <div dangerouslySetInnerHTML={{ __html: pageContent }} />
-      <Staffs restBase={restBase} />
-      <Accordion />
+    <div id="about" ref={ref} className="max-width h-fit p-4 lg:h-screen">
+      <h2 className="text-4xl text-center">About Us</h2>
+      {/* <div className="p-4 max-w-lg" dangerouslySetInnerHTML={{ __html: pageContent }} /> */}
+
+      <div className="block lg:flex">
+        {/* About Us Content */}
+        <div className="w-full lg:w-1/2">
+          <div dangerouslySetInnerHTML={{ __html: pageContent }} />
+        </div>
+        {/* First Section Staff Members */}
+        <div className="w-full lg:w-1/2 pr-4">
+          <Staff restBase={restBase} section="first" />
+        </div>
+
+      </div>
+
+      {/* Second Section Staff Members and Accordion */}
+      <div className="w-full lg:w-full mt-4">
+        <div className="w-full lg:w-1/2 pr-4">
+          <Staff restBase={restBase} section="second" />
+        </div>
+        <div className="w-full lg:w-1/2">
+          <Accordion />
+        </div>
+      </div>
     </div>
   );
 });
