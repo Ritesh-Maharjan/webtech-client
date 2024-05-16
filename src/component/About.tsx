@@ -27,7 +27,7 @@ const About: React.FC<{ restBase: string }> = ({ restBase }) => {
   }, [restBase]);
 
   return (
-    <div>
+    <div className="max-width">
       <h2>About Us</h2>
       <div dangerouslySetInnerHTML={{ __html: pageContent }} />
 			{/* <Staffs restBase={restBase} /> */}

@@ -61,7 +61,7 @@ const Service: React.FC<{
   }, []);
 
   return (
-    <div className="max-width mb-24 h-fit md:mb-0 md:h-screen flex flex-wrap p-4">
+    <div className="max-width mb-24 h-fit md:mb-0 lg:h-screen flex flex-wrap p-4">
       <h2 className="my-6 text-4xl text-center w-full">Our Services</h2>
 
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:flex gap-8">

@@ -46,7 +46,7 @@ const Staff: React.FC<{ restBase: string }> = ({ restBase }) => {
   };
 
   return (
-    <div>
+    <div className="max-width">
       <h2>Staff Members</h2>
       {staffMembers.map((staff) => (
         <div key={staff.id}>
