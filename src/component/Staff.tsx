@@ -17,7 +17,7 @@ const Staff: React.FC<{ restBase: string }> = ({ restBase }) => {
   useEffect(() => {
     const fetchStaffMembers = async () => {
       try {
-        const response = await fetch(`${restBase}webtech-staff`);
+        const response = await fetch(`${restBase}webtech-staff?_embed`);
         if (!response.ok) {
           throw new Error("Failed to fetch staff members");
         }
@@ -31,32 +31,42 @@ const Staff: React.FC<{ restBase: string }> = ({ restBase }) => {
     fetchStaffMembers();
   }, [restBase]);
 
-  const fetchFeaturedImage = async (id: number) => {
-    try {
-      const response = await fetch(`${restBase}media/${id}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch featured image");
-      }
-      const data: MediaData = await response.json();
-      return data.source_url;
-    } catch (error) {
-      console.error("Error fetching featured image:", error);
-      return null;
-    }
-  };
+  useEffect(() => {
+    const fetchFeaturedImages = async () => {
+      const updatedStaffMembers = await Promise.all(
+        staffMembers.map(async (staff) => {
+          try {
+            const response = await fetch(`${restBase}media/${staff.featured_media}`);
+            if (!response.ok) {
+              throw new Error("Failed to fetch featured image");
+            }
+            const data: MediaData = await response.json();
+            return { ...staff, source_url: data.source_url };
+          } catch (error) {
+            console.error("Error fetching featured image:", error);
+            return staff; // Keep the staff member if fetching the image fails
+          }
+        })
+      );
+      setStaffMembers(updatedStaffMembers);
+    };
+
+    fetchFeaturedImages();
+  }, [restBase, staffMembers]);
 
   return (
-    <div className="max-width">
+    <div>
       <h2>Staff Members</h2>
+			<section className="flex">
       {staffMembers.map((staff) => (
         <div key={staff.id}>
           <h3>{staff.title.rendered}</h3>
-          <img
-            src={fetchFeaturedImage(staff.featured_media)}
-            alt={staff.title.rendered}
-          />
+          {staff.source_url && (
+            <img className="w-[250px]" src={staff.source_url} alt={staff.title.rendered} />
+          )}
         </div>
       ))}
+			</section>
     </div>
   );
 };
