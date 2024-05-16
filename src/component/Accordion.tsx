@@ -34,20 +34,14 @@ const AccordionItem: React.FC<{ handleToggle: (index: number) => void; active: n
     const { header, id, text } = faq;
 
     return (
-        <div className="rc-accordion-card">
-            <div className="rc-accordion-header">
-                <div className={`rc-accordion-toggle p-3 ${active === id ? 'active' : ''}`} onClick={() => handleToggle(id)}>
-                    <h5 className="rc-accordion-title">{header}</h5>
-                    <i className="fa fa-chevron-down rc-accordion-icon"></i>
-                </div>
+        <div className="border border-gray-300 rounded-lg mb-4 overflow-hidden">
+            <div className={`flex items-start cursor-pointer justify-between bg-gray-300 transition-all ${active === id ? 'bg-blue-500' : ''}`} onClick={() => handleToggle(id)}>
+                <h5 className={`font-medium text-base relative mb-0 ${active === id ? 'text-white' : 'text-gray-700'} transition-all`}>{header}</h5>
+                <i className={`relative top-1 text-gray-700 transition-all text-xs ${active === id ? 'transform rotate-180 text-white' : ''}`}>V</i>
             </div>
-            <div ref={contentEl} className={`rc-collapse ${active === id ? 'show' : ''}`} style={
-                active === id
-                    ? { height: contentEl.current?.scrollHeight }
-                    : { height: "0px" }
-            }>
-                <div className="rc-accordion-body">
-                    <p className='mb-0'>{text}</p>
+            <div ref={contentEl} className={`relative h-0 overflow-hidden transition-height duration-300 ease-out ${active === id ? 'h-auto' : ''}`}>
+                <div className="flex-1 min-h-0 py-4">
+                    <p className='mb-0 text-base font-normal leading-6 text-blue-600'>{text}</p>
                 </div>
             </div>
         </div>
