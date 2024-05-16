@@ -1,5 +1,6 @@
 import { forwardRef, useEffect, useState } from "react";
 import parse from "html-react-parser";
+import { motion } from "framer-motion";
 
 interface ServiceData {
   id: number;
@@ -27,6 +28,20 @@ interface ServiceProps {
 const Service = forwardRef<HTMLDivElement, ServiceProps>(
   ({ restBase }, ref) => {
     const [services, setServices] = useState<parsedServiceData[]>([]);
+
+    const fadeInAnimation = {
+      initial: {
+        opacity: 0,
+        y: 10,
+      },
+      animate: (index: number) => ({
+        opacity: 1,
+        y: 0,
+        transition: {
+          delay: 0.2 * index,
+        },
+      }),
+    };
 
     useEffect(() => {
       setServices([]);
@@ -65,17 +80,20 @@ const Service = forwardRef<HTMLDivElement, ServiceProps>(
     return (
       <div
         ref={ref}
-        className="max-width mb-24 h-fit lg:h-screen flex flex-wrap p-4"
+        className="max-width mb-24 h-fit xl:h-screen flex flex-wrap p-4"
         id="service"
       >
         <h2 className="my-6 text-4xl text-center w-full">Our Services</h2>
 
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:flex gap-8 ">
-          {services.map((service) => (
-            <article
+        <section className="grid grid-cols-1 sm:grid-cols-2 pb-40 xl:flex gap-8 ">
+          {services.map((service, index) => (
+            <motion.article
+              variants={fadeInAnimation}
+              initial="initial"
+              whileInView="animate"
+              custom={index}
               key={service.id}
-              className="flex flex-col gap-4 p-4 last:pb-32
-          "
+              className="flex flex-col shadow-cyan-500/50 gap-4 p-4 py-20 hover:shadow-orange-400/60 shadow-xl h-full"
             >
               <h3 className="font-semibold text-xl h-fit md:h-12">
                 {service.title}
@@ -87,7 +105,7 @@ const Service = forwardRef<HTMLDivElement, ServiceProps>(
                   </p>
                 );
               })}
-            </article>
+            </motion.article>
           ))}
         </section>
       </div>

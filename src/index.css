@@ -32,4 +32,5 @@
 
 body {
   scroll-snap-type: y mandatory; /* Optional for smoother snapping */
+  scroll-behavior: smooth;
 }
