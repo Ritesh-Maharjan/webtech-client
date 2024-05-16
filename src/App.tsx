@@ -1,6 +1,7 @@
 import Hero from "./component/Hero"
 import Service from "./component/Service";
 import About from "./component/About";
+import Staff from "./component/Staff";
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
       <Hero />
       <Service restBase={restBase} />
 			<About restBase={restBase} />
+			<Staff restBase={restBase} />
     </div>
   )
 }
