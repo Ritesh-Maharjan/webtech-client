@@ -1,3 +1,4 @@
+// Staff.tsx
 import React, { useEffect, useState } from "react";
 
 interface StaffMember {
@@ -7,7 +8,12 @@ interface StaffMember {
   source_url?: string; // Added source_url as an optional property
 }
 
-const Staff: React.FC<{ restBase: string }> = ({ restBase }) => {
+interface StaffProps {
+  restBase: string;
+  section: "first" | "second";
+}
+
+const Staff: React.FC<StaffProps> = ({ restBase, section }) => {
   const [staffMembers, setStaffMembers] = useState<StaffMember[]>([]);
 
   useEffect(() => {
@@ -34,37 +40,21 @@ const Staff: React.FC<{ restBase: string }> = ({ restBase }) => {
     fetchStaffMembers();
   }, [restBase]);
 
-  // Splitting staff members into two arrays, each containing two staff members
-  const firstSectionStaff = staffMembers.slice(0, 2);
-  const secondSectionStaff = staffMembers.slice(2, 4);
+  // Determine the number of staff members to display based on the section
+  const startIdx = section === "first" ? 0 : 2;
+  const endIdx = section === "first" ? 2 : 4;
+  const sectionStaff = staffMembers.slice(startIdx, endIdx);
 
   return (
-    <div>
-      <h2>Staff Members</h2>
-      
-      {/* First Section */}
-      <section className="flex">
-        {firstSectionStaff.map((staff) => (
-          <div key={staff.id}>
-            <h3>{staff.title.rendered}</h3>
-            {staff.source_url && (
-              <img className="w-[250px]" src={staff.source_url} alt={staff.title.rendered} />
-            )}
-          </div>
-        ))}
-      </section>
-
-      {/* Second Section */}
-      <section className="flex">
-        {secondSectionStaff.map((staff) => (
-          <div key={staff.id}>
-            <h3>{staff.title.rendered}</h3>
-            {staff.source_url && (
-              <img className="w-[250px]" src={staff.source_url} alt={staff.title.rendered} />
-            )}
-          </div>
-        ))}
-      </section>
+    <div className="flex">
+      {sectionStaff.map((staff) => (
+        <div key={staff.id}>
+          <h3>{staff.title.rendered}</h3>
+          {staff.source_url && (
+            <img className="w-[150px] h-[150px] object-cover rounded-full" src={staff.source_url} alt={staff.title.rendered} />
+          )}
+        </div>
+      ))}
     </div>
   );
 };
