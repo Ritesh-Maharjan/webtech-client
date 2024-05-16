@@ -4,11 +4,7 @@ interface StaffMember {
   id: number;
   title: { rendered: string };
   featured_media: number;
-}
-
-interface MediaData {
-  id: number;
-  source_url: string;
+  source_url?: string; // Added source_url as an optional property
 }
 
 const Staff: React.FC<{ restBase: string }> = ({ restBase }) => {
@@ -22,7 +18,14 @@ const Staff: React.FC<{ restBase: string }> = ({ restBase }) => {
           throw new Error("Failed to fetch staff members");
         }
         const data: StaffMember[] = await response.json();
-        setStaffMembers(data);
+        
+        // Map through the data and add the source_url directly to each staff member
+        const updatedStaffMembers = data.map(staff => ({
+          ...staff,
+          source_url: staff._embedded?.["wp:featuredmedia"]?.[0]?.source_url || null
+        }));
+        
+        setStaffMembers(updatedStaffMembers);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -31,42 +34,37 @@ const Staff: React.FC<{ restBase: string }> = ({ restBase }) => {
     fetchStaffMembers();
   }, [restBase]);
 
-  useEffect(() => {
-    const fetchFeaturedImages = async () => {
-      const updatedStaffMembers = await Promise.all(
-        staffMembers.map(async (staff) => {
-          try {
-            const response = await fetch(`${restBase}media/${staff.featured_media}`);
-            if (!response.ok) {
-              throw new Error("Failed to fetch featured image");
-            }
-            const data: MediaData = await response.json();
-            return { ...staff, source_url: data.source_url };
-          } catch (error) {
-            console.error("Error fetching featured image:", error);
-            return staff; // Keep the staff member if fetching the image fails
-          }
-        })
-      );
-      setStaffMembers(updatedStaffMembers);
-    };
-
-    fetchFeaturedImages();
-  }, [restBase, staffMembers]);
+  // Splitting staff members into two arrays, each containing two staff members
+  const firstSectionStaff = staffMembers.slice(0, 2);
+  const secondSectionStaff = staffMembers.slice(2, 4);
 
   return (
     <div>
       <h2>Staff Members</h2>
-			<section className="flex">
-      {staffMembers.map((staff) => (
-        <div key={staff.id}>
-          <h3>{staff.title.rendered}</h3>
-          {staff.source_url && (
-            <img className="w-[250px]" src={staff.source_url} alt={staff.title.rendered} />
-          )}
-        </div>
-      ))}
-			</section>
+      
+      {/* First Section */}
+      <section className="flex">
+        {firstSectionStaff.map((staff) => (
+          <div key={staff.id}>
+            <h3>{staff.title.rendered}</h3>
+            {staff.source_url && (
+              <img className="w-[250px]" src={staff.source_url} alt={staff.title.rendered} />
+            )}
+          </div>
+        ))}
+      </section>
+
+      {/* Second Section */}
+      <section className="flex">
+        {secondSectionStaff.map((staff) => (
+          <div key={staff.id}>
+            <h3>{staff.title.rendered}</h3>
+            {staff.source_url && (
+              <img className="w-[250px]" src={staff.source_url} alt={staff.title.rendered} />
+            )}
+          </div>
+        ))}
+      </section>
     </div>
   );
 };
