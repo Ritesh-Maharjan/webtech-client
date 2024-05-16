@@ -2,6 +2,7 @@ import Hero from "./component/Hero"
 import Service from "./component/Service";
 import About from "./component/About";
 import Staff from "./component/Staff";
+import Accordion from "./component/Accordion";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <Service restBase={restBase} />
 			<About restBase={restBase} />
 			<Staff restBase={restBase} />
+			<Accordion/>
     </div>
   )
 }
