@@ -59,7 +59,6 @@ function App() {
       <About ref={aboutRef} restBase={restBase} />
       <Works />
       <Testimonial />
-
     </div>
   );
 }
