@@ -57,14 +57,14 @@ const Service = forwardRef<HTMLDivElement, ServiceProps>(({ restBase }, ref) => 
   }, [restBase]);
 
   return (
-    <div className="max-width">
+    <div className="max-width h-fit lg:h-screen">
               
       <h1 className="my-6 text-4xl text-center w-full flex gap-5"><Icon icon="bi:fingerprint" width="50" height="50"  style={{ color: 'orange' }} />Testimonials</h1>
       <section className="grid grid-cols-1 sm:grid-cols-2">
         {testimonialData.map((testimonial) => (
           <article
             key={testimonial.id}
-            className="flex flex-col gap-1 p-4 hover:scale-105 transform transition-transform duration-300"
+            className="flex flex-col gap-4 p-4 lg:gap-1 hover:scale-105 transform transition-transform duration-300"
           >
             {testimonial.contentData.map((content, index) => (
               <p className="text-justify" key={index}>
