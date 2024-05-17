@@ -1,4 +1,3 @@
-// About.tsx
 import React, { forwardRef, useEffect, useState } from "react";
 import Staff from "./Staff";
 import Accordion from "./Accordion";
@@ -55,7 +54,7 @@ const About = forwardRef<HTMLDivElement, AboutProps>(({ restBase }, ref) => {
           <Staff restBase={restBase} section="second" />
         </div>
         <div className="w-full lg:w-1/2">
-          <Accordion />
+          <Accordion restBase={restBase} />
         </div>
       </div>
     </div>
