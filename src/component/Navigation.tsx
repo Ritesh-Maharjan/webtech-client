@@ -9,11 +9,12 @@ const Navigation: React.FC<{ activeSection: string }> = ({ activeSection }) => {
         } ${activeSection == "service" && "before:top-14"}
         ${activeSection == "about" && "before:top-28"}
         `}
+        
       >
         <li className="py-4"><a href="#hero">00</a></li>
         <li className="py-4"><a href="#service">01</a></li>
         <li className="py-4"><a href="#about">02</a></li>
-        <li className="py-4"><a href="#hero">03</a></li>
+        <li className="py-4"><a href="#hero">04</a></li>
       </ul>
     </nav>
   );

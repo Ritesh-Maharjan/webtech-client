@@ -4,6 +4,7 @@ import About from "./component/About";
 import { useEffect, useRef, useState } from "react";
 import Navigation from "./component/Navigation";
 import Testimonial from "./component/Testimonial";
+import Works from "./component/Works";
 
 function App() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -56,6 +57,7 @@ function App() {
       <Navigation activeSection={activeSection} />
       <Service ref={serviceRef} restBase={restBase} />
       <About ref={aboutRef} restBase={restBase} />
+      <Works />
       <Testimonial />
 
     </div>
