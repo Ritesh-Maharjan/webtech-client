@@ -31,12 +31,12 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(({ restBase }, ref)
 
 	return (
     <div id="accordion" ref={ref} className="max-width h-fit p-4 lg:h-screen">
-      <h2 className="text-4xl text-center">FAQ</h2>
+      <h2 className="text-4xl text-center">Our Rules</h2>
       {/* <div className="p-4 max-w-lg" dangerouslySetInnerHTML={{ __html: pageContent }} /> */}
 
-      <div className="block lg:flex">
+      <div className="bg-gray-700 p-4 rounded-md">
         {/* Accordion Us Content */}
-        <div className="w-full lg:w-1/2">
+        <div className="">
           <div dangerouslySetInnerHTML={{ __html: pageContent }} />
         </div>
       </div>

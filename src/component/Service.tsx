@@ -1,34 +1,28 @@
 import { forwardRef, useEffect, useState } from "react";
 import parse from "html-react-parser";
 import { motion } from "framer-motion";
-
 interface ServiceData {
   id: number;
   title: { rendered: string };
   content: { rendered: string };
 }
-
 // Define the type for your service data
 interface contentData {
   type: string;
   content: string;
   // Add other fields as necessary
 }
-
 interface parsedServiceData {
   title: string;
   id: number;
   contentData: contentData[];
 }
-
 interface ServiceProps {
   restBase: string;
 }
-
 const Service = forwardRef<HTMLDivElement, ServiceProps>(
   ({ restBase }, ref) => {
     const [services, setServices] = useState<parsedServiceData[]>([]);
-
     const fadeInAnimation = {
       initial: {
         opacity: 0,
@@ -42,7 +36,6 @@ const Service = forwardRef<HTMLDivElement, ServiceProps>(
         },
       }),
     };
-
     useEffect(() => {
       setServices([]);
       fetch(`${restBase}webtech-service`)
@@ -52,7 +45,6 @@ const Service = forwardRef<HTMLDivElement, ServiceProps>(
             const title = serviceData.title.rendered;
             const { id } = serviceData;
             const contentData: contentData[] = [];
-
             const parsedContent = parse(serviceData.content.rendered);
             if (Array.isArray(parsedContent)) {
               parsedContent.map((el) => {
@@ -62,7 +54,6 @@ const Service = forwardRef<HTMLDivElement, ServiceProps>(
                   contentData.push({ type, content });
                 }
               });
-
               setServices((prevData) => [
                 ...prevData,
                 {
@@ -76,7 +67,6 @@ const Service = forwardRef<HTMLDivElement, ServiceProps>(
         })
         .catch((error) => console.error("Error fetching data:", error));
     }, []);
-
     return (
       <div
         ref={ref}
@@ -84,7 +74,6 @@ const Service = forwardRef<HTMLDivElement, ServiceProps>(
         id="service"
       >
         <h2 className="my-6 text-4xl text-center w-full">Our Services</h2>
-
         <section className="grid grid-cols-1 sm:grid-cols-2 pb-40 xl:flex gap-8 ">
           {services.map((service, index) => (
             <motion.article
@@ -112,5 +101,4 @@ const Service = forwardRef<HTMLDivElement, ServiceProps>(
     );
   }
 );
-
 export default Service;
