@@ -45,13 +45,15 @@ const Staff: React.FC<StaffProps> = ({ restBase, section }) => {
   const endIdx = section === "first" ? 2 : 4;
   const sectionStaff = staffMembers.slice(startIdx, endIdx);
 
+	const containerClassName = section === "first" ? "justify-center flex gap-8 lg:flex-row" : "p-4 justify-center flex gap-8 lg:flex-col";
+
   return (
-    <div className="flex">
+    <div className={containerClassName}>
       {sectionStaff.map((staff) => (
         <div key={staff.id}>
           <h3>{staff.title.rendered}</h3>
           {staff.source_url && (
-            <img className="w-[150px] h-[150px] object-cover rounded-full" src={staff.source_url} alt={staff.title.rendered} />
+            <img className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] object-cover rounded-full" src={staff.source_url} alt={staff.title.rendered} />
           )}
         </div>
       ))}

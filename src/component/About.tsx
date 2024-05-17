@@ -33,12 +33,12 @@ const About = forwardRef<HTMLDivElement, AboutProps>(({ restBase }, ref) => {
 
   return (
     <div id="about" ref={ref} className="max-width h-fit p-4 lg:h-screen">
-      <h2 className="text-4xl text-center">About Us</h2>
+      <h2 className="text-4xl my-6 text-center">About Us</h2>
       {/* <div className="p-4 max-w-lg" dangerouslySetInnerHTML={{ __html: pageContent }} /> */}
 
       <div className="block lg:flex">
         {/* About Us Content */}
-        <div className="w-full lg:w-1/2">
+        <div className="w-full md:text-justify lg:w-1/2 p-4">
           <div dangerouslySetInnerHTML={{ __html: pageContent }} />
         </div>
         {/* First Section Staff Members */}
@@ -49,7 +49,7 @@ const About = forwardRef<HTMLDivElement, AboutProps>(({ restBase }, ref) => {
       </div>
 
       {/* Second Section Staff Members and Accordion */}
-      <div className="w-full lg:w-full mt-4">
+      <div className="w-full lg:w-full mt-4 block lg:flex">
         <div className="w-full lg:w-1/2 pr-4">
           <Staff restBase={restBase} section="second" />
         </div>
