@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import parse from 'html-react-parser';
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
+import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-
-
-// import required modules
-import { Pagination } from 'swiper/modules';
-// Define interfaces for the data structure
 interface WorkData {
   id: number;
   title: { rendered: string };
@@ -30,6 +23,7 @@ interface ParsedWorkData {
   id: number;
   contentData: ContentData[];
   featuredImage?: MediaData;
+  contentLink?: string; // Added contentLink to store link from content
 }
 
 interface ContentData {
@@ -37,64 +31,66 @@ interface ContentData {
   content: any;
 }
 
-// Custom hook to fetch works data
 const useFetchWorks = (restBase: string, endpoint: string) => {
-  const [data, setData] = useState<ParsedWorkData[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
-
-  useEffect(() => {
-    setLoading(true);
-    setError(null);
-
-    fetch(`${restBase}${endpoint}`)
-      .then(response => response.json())
-      .then((data: WorkData[]) => {
-        const fetchMediaPromises = data.map(work =>
-          work.featured_media
-            ? fetch(`${restBase}media/${work.featured_media}`).then(response => response.json())
-            : Promise.resolve(null)
-        );
-
-        Promise.all(fetchMediaPromises).then(mediaDataArray => {
-          const parsedData: ParsedWorkData[] = data.map((workData, index) => {
-            const title = workData.title.rendered;
-            const { id } = workData;
-
-            const contentData: ContentData[] = [];
-
-            const parsedContent = parse(workData.content.rendered);
-            if (Array.isArray(parsedContent)) {
-              parsedContent.forEach((el: any) => {
-                if (typeof el === 'object' && el !== null) {
-                  const { type } = el;
-                  const content = el.props.children;
-                  contentData.push({ type, content });
-                }
-              });
-            } else {
-              contentData.push({ type: 'div', content: parsedContent });
-            }
-
-            const featuredImage = mediaDataArray[index];
-
-            return { title, id, contentData, featuredImage };
+    const [data, setData] = useState<ParsedWorkData[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<Error | null>(null);
+  
+    useEffect(() => {
+      setLoading(true);
+      setError(null);
+  
+      fetch(`${restBase}${endpoint}`)
+        .then(response => response.json())
+        .then((data: WorkData[]) => {
+          const fetchMediaPromises = data.map(work =>
+            work.featured_media
+              ? fetch(`${restBase}media/${work.featured_media}`).then(response => response.json())
+              : Promise.resolve(null)
+          );
+  
+          Promise.all(fetchMediaPromises).then(mediaDataArray => {
+            const parsedData: ParsedWorkData[] = data.map((workData, index) => {
+              const title = workData.title.rendered;
+              const { id } = workData;
+              const contentData: ContentData[] = [];
+              const parsedContent = parse(workData.content.rendered);
+              
+              // Extract content link from HTML content
+              const match = /<a\s+(?:[^>]*?\s+)?href=(["'])(.*?)\1/g.exec(workData.content.rendered);
+              const contentLink = match ? match[2] : undefined;
+  
+              if (Array.isArray(parsedContent)) {
+                parsedContent.forEach((el: any) => {
+                  if (typeof el === 'object' && el !== null) {
+                    const { type } = el;
+                    const content = el.props.children;
+                    contentData.push({ type, content });
+                  }
+                });
+              } else {
+                contentData.push({ type: 'div', content: parsedContent });
+              }
+  
+              const featuredImage = mediaDataArray[index];
+  
+              return { title, id, contentData, featuredImage, contentLink };
+            });
+  
+            setData(parsedData);
+            setLoading(false);
           });
-
-          setData(parsedData);
+        })
+        .catch(error => {
+          setError(error);
           setLoading(false);
         });
-      })
-      .catch(error => {
-        setError(error);
-        setLoading(false);
-      });
-  }, [restBase, endpoint]);
+    }, [restBase, endpoint]);
+  
+    return { data, loading, error };
+  };
+  
 
-  return { data, loading, error };
-};
-
-// Main Works component
 const Works = () => {
   const restBase = 'https://riteshmaharjan.com/webtech/wp-json/wp/v2/';
   const { data: worksData, loading, error } = useFetchWorks(restBase, 'webtech-work');
@@ -104,32 +100,50 @@ const Works = () => {
 
   return (
     <div className="max-width">
-      <h1 className="my-6 text-4xl text- w-full">Works</h1>
-      <Swiper pagination={true} modules={[Pagination]} className="mySwiper" slidesPerView={3} loop={true}>
+      <h1 className="my-6 text-4xl font-bold text- w-full">Works</h1>
+      <Swiper
+        pagination={{ clickable: true, el: '.swiper-pagination' }}
+        modules={[Pagination]}
+        className="mySwiper w-full"
+        slidesPerView={1}
+        speed={1300} 
+        effect="slide" 
+        autoplay={{ delay: 2000, disableOnInteraction: false }} // Autoplay every 10 seconds
+        breakpoints={{
+            640: {
+              slidesPerView: 1, // Show only one slide per view on smaller screens
+            },
+            768: {
+              slidesPerView: 2, // Show two slides per view on tablets
+            },
+            1024: {
+              slidesPerView: 3, // Show three slides per view on larger screens
+            },
+          }}
+        loop={true}
+      >
         <section className="grid grid-cols-1 sm:grid-cols-2">
           {worksData.map((work) => (
             <SwiperSlide key={work.id}>
               <article
-                className="flex flex-col gap-8 p-4 hover:scale-105 transform transition-transform duration-300"
-              >
+                className="flex flex-col gap-8 p-4 hover:scale-105 transform transition-transform duration-300">
                 <h2 className="text-2xl">{work.title}</h2>
                 {work.featuredImage && (
+                  <a href={work.contentLink || '#'} target="_blank" rel="noopener noreferrer">
                   <img
                     src={work.featuredImage.source_url}
                     alt={work.featuredImage.alt_text}
-                    className="w-full h-auto"
+                    className="w-full h-[600px] object-cover"
                   />
+                  </a>
                 )}
-                {work.contentData.map((content, index) => (
-                  <div key={index}>
-                    <h3>{content.type}</h3>
-                    <div>{content.content}</div>
-                  </div>
-                ))}
               </article>
             </SwiperSlide>
           ))}
         </section>
+        <div className="swiper-pagination mt-4 text-orange-500 !important">
+            <span className="swiper-pagination-bullet-active text-orange-500 !important"></span>
+        </div>
       </Swiper>
     </div>
   );
