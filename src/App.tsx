@@ -4,6 +4,7 @@ import About from "./component/About";
 import { useEffect, useRef, useState } from "react";
 import Navigation from "./component/Navigation";
 import Testimonial from "./component/Testimonial";
+import Contact from "./component/Contact";
 import Works from "./component/Works";
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
       <About ref={aboutRef} restBase={restBase} />
       <Works />
       <Testimonial />
+			<Contact restBase={restBase}/>
     </div>
   );
 }

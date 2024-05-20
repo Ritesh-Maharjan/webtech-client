@@ -28,6 +28,7 @@ const Contact = ({ restBase }: { restBase: string }) => {
       yourEmail: "",
       yourService: "",
       yourMessage: "",
+			_wpcf7_unit_tag: 42,
     },
     validationSchema: validationSchema,
     onSubmit: async (values, { setSubmitting, resetForm, setStatus }) => {
@@ -36,10 +37,11 @@ const Contact = ({ restBase }: { restBase: string }) => {
       data.append("yourEmail", values.yourEmail);
       data.append("yourService", values.yourService);
       data.append("yourMessage", values.yourMessage);
+			data.append("_wpcf7_unit_tag", values._wpcf7_unit_tag);
 
       try {
         const response = await fetch(
-          `https://riteshmaharjan.com/webtech/wp-json/contact-form-7/v1/contact-forms/30/feedback`,
+          `https://riteshmaharjan.com/webtech/wp-json/contact-form-7/v1/contact-forms/42/feedback`,
           {
             method: "POST",
             body: data,
@@ -83,6 +85,7 @@ const Contact = ({ restBase }: { restBase: string }) => {
         <div>
           <label htmlFor="yourEmail">Your email</label>
           <input
+						className="text-black"
             type="email"
             name="yourEmail"
             id="yourEmail"
@@ -119,6 +122,7 @@ const Contact = ({ restBase }: { restBase: string }) => {
         <div>
           <label htmlFor="yourMessage">Your message</label>
           <textarea
+						className="text-black"
             name="yourMessage"
             id="yourMessage"
             value={values.yourMessage}
