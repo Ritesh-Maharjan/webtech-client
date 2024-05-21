@@ -67,8 +67,9 @@ const Contact = ({ restBase }: { restBase: string }) => {
     <div className="max-width flex items-center justify-center">
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="yourName">Your name</label>
+          <label htmlFor="yourName">Your Name</label>
           <input
+						className="bg-transparent border-b-2"
             type="text"
             name="yourName"
             id="yourName"
@@ -83,9 +84,9 @@ const Contact = ({ restBase }: { restBase: string }) => {
         </div>
 
         <div>
-          <label htmlFor="yourEmail">Your email</label>
+          <label htmlFor="yourEmail">Your Email</label>
           <input
-						className="text-black"
+						className="bg-transparent border-b-2"
             type="email"
             name="yourEmail"
             id="yourEmail"
@@ -102,6 +103,7 @@ const Contact = ({ restBase }: { restBase: string }) => {
         <div>
           <label htmlFor="yourService">Select a service</label>
           <select
+						className="bg-transparent border-b-2"
             name="yourService"
             id="yourService"
             value={values.yourService}
@@ -120,9 +122,9 @@ const Contact = ({ restBase }: { restBase: string }) => {
         </div>
 
         <div>
-          <label htmlFor="yourMessage">Your message</label>
+          <label htmlFor="yourMessage">Your Message</label>
           <textarea
-						className="text-black"
+						className="bg-transparent border-b-2"
             name="yourMessage"
             id="yourMessage"
             value={values.yourMessage}
@@ -135,7 +137,10 @@ const Contact = ({ restBase }: { restBase: string }) => {
         </div>
 
         <div>
-          <button type="submit" disabled={isSubmitting}>
+          <button 
+					className="bg-yellow-500"
+					type="submit" 
+					disabled={isSubmitting}>
             Submit
           </button>
         </div>
