@@ -4,10 +4,10 @@ import About from "./component/About";
 import { useEffect, useRef, useState } from "react";
 import Navigation from "./component/Navigation";
 import Testimonial from "./component/Testimonial";
-import Contact from "./component/Contact";
+// import Contact from "./component/Contact";
 import Works from "./component/Works";
 import background1 from "/bg-1.jpg";
-import background2 from "/bg-2.jpg";
+// import background2 from "/bg-2.jpg";
 
 function App() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -65,7 +65,7 @@ function App() {
       <Works />
 			<div style={{ backgroundImage: `url(${background1})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
       <Testimonial />
-			<Contact restBase={restBase}/>
+			{/* <Contact restBase={restBase}/> */}
 			</div>
     </div>
   );
