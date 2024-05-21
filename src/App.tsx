@@ -6,6 +6,8 @@ import Navigation from "./component/Navigation";
 import Testimonial from "./component/Testimonial";
 import Contact from "./component/Contact";
 import Works from "./component/Works";
+import background1 from "/bg-1.jpg";
+import background2 from "/bg-2.jpg";
 
 function App() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -56,11 +58,15 @@ function App() {
     <div className="bg-black text-white scroll-container">
       <Hero ref={heroRef} />
       <Navigation activeSection={activeSection} />
-      <Service ref={serviceRef} restBase={restBase} />
-      <About ref={aboutRef} restBase={restBase} />
+			<div style={{ backgroundImage: `url(${background1})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
+				<Service ref={serviceRef} restBase={restBase} />
+				<About ref={aboutRef} restBase={restBase} />
+			</div>
       <Works />
+			<div style={{ backgroundImage: `url(${background1})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
       <Testimonial />
 			<Contact restBase={restBase}/>
+			</div>
     </div>
   );
 }
