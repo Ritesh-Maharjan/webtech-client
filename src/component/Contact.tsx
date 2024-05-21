@@ -2,6 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+interface ContactData {
+	contactforminfo: string;
+	phonenumber: number;
+	email: string;
+	facebook: string;
+	instagram: string;
+}
+
 // Define the validation schema
 const validationSchema = Yup.object({
   yourName: Yup.string().required("Name is required"),
@@ -12,7 +20,19 @@ const validationSchema = Yup.object({
   yourMessage: Yup.string().min(10),
 });
 
+const [contactData, setContactData] = useState<ContactData>([]);
 const Contact = ({ restBase }: { restBase: string }) => {
+	useEffect(() => {
+		fetch(`${restBase}pages/30`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+	})
+	
   const {
     values,
     handleChange,
