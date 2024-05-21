@@ -50,10 +50,10 @@ const About = forwardRef<HTMLDivElement, AboutProps>(({ restBase }, ref) => {
 
       {/* Second Section Staff Members and Accordion */}
       <div className="w-full lg:w-full mt-4 block lg:flex">
-        <div className="w-full lg:w-1/2 pr-4">
+        <div className="w-full lg:w-1/4 pr-4">
           <Staff restBase={restBase} section="second" />
         </div>
-        <div className="w-full lg:w-1/2">
+        <div className="w-full lg:w-3/4">
           <Accordion restBase={restBase} />
         </div>
       </div>
