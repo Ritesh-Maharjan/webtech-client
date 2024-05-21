@@ -4,7 +4,7 @@ import About from "./component/About";
 import { useEffect, useRef, useState } from "react";
 import Navigation from "./component/Navigation";
 import Testimonial from "./component/Testimonial";
-// import Contact from "./component/Contact";
+import Contact from "./component/Contact";
 import Works from "./component/Works";
 import background1 from "/bg-1.jpg";
 // import background2 from "/bg-2.jpg";
@@ -13,6 +13,7 @@ function App() {
   const heroRef = useRef<HTMLDivElement>(null);
   const serviceRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
@@ -39,6 +40,10 @@ function App() {
       observer.observe(aboutRef.current);
     }
 
+    if (contactRef.current) {
+      observer.observe(contactRef.current);
+    }
+
     return () => {
       if (heroRef.current) {
         observer.unobserve(heroRef.current);
@@ -50,6 +55,9 @@ function App() {
       if (aboutRef.current) {
         observer.unobserve(aboutRef.current);
       }
+      if (contactRef.current) {
+        observer.unobserve(contactRef.current);
+      }
     };
   }, []);
 
@@ -57,16 +65,32 @@ function App() {
   return (
     <div className="bg-black text-white scroll-container">
       <Hero ref={heroRef} />
-      <Navigation activeSection={activeSection} />
-			<div style={{ backgroundImage: `url(${background1})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
-				<Service ref={serviceRef} restBase={restBase} />
-				<About ref={aboutRef} restBase={restBase} />
-			</div>
+      <div
+        style={{
+          backgroundImage: `url(${background1})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          position: "relative",
+          width: "100vw",
+        }}
+      >
+        <Navigation activeSection={activeSection} />
+        <Service ref={serviceRef} restBase={restBase} />
+        <About ref={aboutRef} restBase={restBase} />
+      </div>
       <Works />
-			<div style={{ backgroundImage: `url(${background1})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
-      <Testimonial />
-			{/* <Contact restBase={restBase}/> */}
-			</div>
+      <div
+        style={{
+          backgroundImage: `url(${background1})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          width: "100vw",
+          position: "relative",
+        }}
+      >
+        <Testimonial />
+        <Contact ref={contactRef} restBase={restBase} />
+      </div>
     </div>
   );
 }

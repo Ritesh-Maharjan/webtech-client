@@ -1,62 +1,49 @@
 // Staff.tsx
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-interface StaffMember {
+interface updatedStaffMember {
   id: number;
-  title: { rendered: string };
-  featured_media: number;
-  source_url?: string; // Added source_url as an optional property
+  name: string;
+  source_url: string;
 }
 
 interface StaffProps {
-  restBase: string;
-  section: "first" | "second";
+  firstStaff: updatedStaffMember;
+  secondStaff: updatedStaffMember;
+  section: string;
 }
 
-const Staff: React.FC<StaffProps> = ({ restBase, section }) => {
-  const [staffMembers, setStaffMembers] = useState<StaffMember[]>([]);
-
-  useEffect(() => {
-    const fetchStaffMembers = async () => {
-      try {
-        const response = await fetch(`${restBase}webtech-staff?_embed`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch staff members");
-        }
-        const data: StaffMember[] = await response.json();
-        
-        // Map through the data and add the source_url directly to each staff member
-        const updatedStaffMembers = data.map(staff => ({
-          ...staff,
-          source_url: staff._embedded?.["wp:featuredmedia"]?.[0]?.source_url || null
-        }));
-        
-        setStaffMembers(updatedStaffMembers);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchStaffMembers();
-  }, [restBase]);
-
-  // Determine the number of staff members to display based on the section
-  const startIdx = section === "first" ? 0 : 2;
-  const endIdx = section === "first" ? 2 : 4;
-  const sectionStaff = staffMembers.slice(startIdx, endIdx);
-
-	const containerClassName = section === "first" ? "justify-center flex gap-8 lg:flex-row" : "p-4 justify-center flex gap-8 lg:flex-col";
+const Staff: React.FC<StaffProps> = ({ firstStaff, secondStaff }) => {
+  if (!firstStaff && !secondStaff) return;
 
   return (
-    <div className={containerClassName}>
-      {sectionStaff.map((staff) => (
-        <div key={staff.id}>
-          <h3>{staff.title.rendered}</h3>
-          {staff.source_url && (
-            <img className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] object-cover rounded-full" src={staff.source_url} alt={staff.title.rendered} />
-          )}
-        </div>
-      ))}
+    <div className={`flex w-fit h-fit gap-4 `}>
+      <div
+        key={firstStaff.id}
+        className="flex flex-col items-center justify-center gap-2"
+      >
+        <h3 className="lg:text-2xl">{firstStaff.name}</h3>
+        {firstStaff.source_url && (
+          <img
+            className="h-32 w-32 object-cover object-top rounded-full"
+            src={firstStaff.source_url}
+            alt={firstStaff.name}
+          />
+        )}
+      </div>
+      <div
+        key={secondStaff.id}
+        className="flex flex-col items-center justify-center gap-2"
+      >
+        <h3 className="lg:text-2xl">{secondStaff.name}</h3>
+        {secondStaff.source_url && (
+          <img
+            className="h-32 w-32 object-cover object-top rounded-full"
+            src={secondStaff.source_url}
+            alt={secondStaff.name}
+          />
+        )}
+      </div>
     </div>
   );
 };
