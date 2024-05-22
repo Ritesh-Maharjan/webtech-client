@@ -12,7 +12,7 @@ const Hero = forwardRef<HTMLDivElement>((_, heroRef) => {
           initial={{ x: -200, opacity: 0.2, scale: 0.6 }}
           animate={{ x: 0, opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="font-arenq"
+          className="font-Arenq"
         >
           Creativity
         </motion.h3>
