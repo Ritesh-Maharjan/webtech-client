@@ -34,9 +34,12 @@ export default function Hamburger() {
 
       <div className={`fixed top-0 left-0 w-screen h-screen flex justify-center items-center z-50 ${isOpen ? "block" : "hidden"}`} onClick={toggleMenu}>
         <ul className="text-white">
-          <li className="mb-4"><a href="#">Home</a></li>
-          <li className="mb-4"><a href="#">About</a></li>
-          <li className="mb-4"><a href="#">Contact</a></li>
+          <li className="mb-4"><a href="#">00 | Home</a></li>
+          <li className="mb-4"><a href="#service">01 | Service</a></li>
+          <li className="mb-4"><a href="#about">02 | About</a></li>
+					<li className="mb-4"><a href="#work">03 | Works</a></li>
+          <li className="mb-4"><a href="#testimonial">04 | Testimonials</a></li>
+					<li className="mb-4"><a href="#contact">05 | Contact</a></li>
         </ul>
       </div>
     </>
