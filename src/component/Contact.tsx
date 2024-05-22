@@ -135,15 +135,15 @@ const Contact = forwardRef<HTMLDivElement, { restBase: string }>(
             <p>{acfData?.contactforminfo}</p>
 
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-8">
-              <span className="flex gap-2 items-center">
+              <a href={`mailto:${acfData?.email}`} className="flex gap-2 items-center">
                 <Icon icon="iconoir:mail" height={"30px"} />
                 {acfData?.email}
-              </span>
-              <span className="flex gap-2 items-center">
+              </a>
+              <a href={`tel:${acfData?.phonenumber}`}  className="flex gap-2 items-center">
                 <Icon icon="solar:phone-outline" height={"25px"} />
                 {acfData?.phonenumber &&
                   formatPhoneNumber(acfData?.phonenumber)}
-              </span>
+              </a>
             </div>
           </div>
 
