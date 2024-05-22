@@ -43,7 +43,8 @@ const Rules = forwardRef<HTMLDivElement, AccordionProps>(
     return (
       <div ref={ref} className="my-8 h-fit p-4 lg:py-0 lg:my-0 lg:h-screen">
         <h3 className="text-xl font-semibold py-1 text-center bg-cyan-500/50">
-          Our Rules
+          Our Principles
+          {/* values */}
         </h3>
         {pageContent && (
           <>

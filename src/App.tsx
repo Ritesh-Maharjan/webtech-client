@@ -8,7 +8,6 @@ import Contact from "./component/Contact";
 import Works from "./component/Works";
 import background1 from "/bg-1.jpg";
 import Hamburger from "./component/Hamburger";
-// import background2 from "/bg-2.jpg";
 
 function App() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -23,7 +22,6 @@ function App() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log(entry)
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
           }
@@ -32,52 +30,27 @@ function App() {
       { threshold: 0.4 }
     );
 
-    if (heroRef.current) {
-      observer.observe(heroRef.current);
-    }
+    const sections = [
+      heroRef.current,
+      serviceRef.current,
+      aboutRef.current,
+      workRef.current,
+      testimonialRef.current,
+      contactRef.current,
+    ];
 
-    if (serviceRef.current) {
-      observer.observe(serviceRef.current);
-    }
-
-    if (aboutRef.current) {
-      observer.observe(aboutRef.current);
-    }
-
-    if (workRef.current) {
-      observer.observe(workRef.current);
-    }
-
-    if (testimonialRef.current) {
-      observer.observe(testimonialRef.current);
-    }
-
-    if (contactRef.current) {
-      observer.observe(contactRef.current);
-      console.log(contactRef.current)
-    }
+    sections.forEach((section) => {
+      if (section) {
+        observer.observe(section);
+      }
+    });
 
     return () => {
-      if (heroRef.current) {
-        observer.unobserve(heroRef.current);
-      }
-
-      if (serviceRef.current) {
-        observer.unobserve(serviceRef.current);
-      }
-      if (aboutRef.current) {
-        observer.unobserve(aboutRef.current);
-      }
-      if (workRef.current) {
-        observer.unobserve(workRef.current);
-      }
-
-      if (testimonialRef.current) {
-        observer.unobserve(testimonialRef.current);
-      }
-      if (contactRef.current) {
-        observer.unobserve(contactRef.current);
-      }
+      sections.forEach((section) => {
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
     };
   }, []);
 

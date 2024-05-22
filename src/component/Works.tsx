@@ -103,8 +103,8 @@ const Works = forwardRef<HTMLDivElement>((_, ref) => {
     error,
   } = useFetchWorks(restBase, "webtech-work");
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (loading) return <div ref={ref} id="work" className="max-width mb-24 h-fit xl:h-screen flex flex-wrap p-4">Loading...</div>;
+  if (error) return <div ref={ref} id="work" className="max-width mb-24 h-fit xl:h-screen flex flex-wrap p-4">Error: {error.message}</div>;
 
   return (
     <div ref={ref} id="work" className="max-width mb-24 h-fit xl:h-screen flex flex-wrap p-4">
