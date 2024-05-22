@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Arenq';
+  src: url('/public/fonts/arenq.otf');
+}
+
+@font-face {
+  font-family: 'Beckman';
+  src: url('/public/fonts/beckman.otf');
+}
+
+@font-face {
+  font-family: 'Mova';
+  src: url('/public/fonts/mova.otf');
+}
+
+@font-face {
+  font-family: 'Overcame Bold';
+  src: url('/public/fonts/overcame-bold.woff');
+}
+
+@font-face {
+  font-family: 'Overcame Outline';
+  src: url('/public/fonts/overcame-outline.woff');
+}
+
 @layer components {
   .scroll-container {
     height: 100vh;
@@ -33,42 +58,4 @@ body {
   scroll-behavior: smooth;
 }
 
-@font-face {
-  font-family: 'Arenq';
-  src: url('/public/fonts/arenq.otf2') format('otf2'),
-       url('/public/fonts/arenq.otf') format('otf');
-  font-weight: normal;
-  font-style: normal;
-}
 
-@font-face {
-  font-family: 'Beckman';
-  src: url('/public/fonts/beckman.otf2') format('otf2'),
-       url('/public/fonts/beckman.otf') format('otf');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Mova';
-  src: url('/public/fonts/mova.otf2') format('otf2'),
-       url('/public/fonts/mova.otf') format('otf');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Overcame Bold';
-  src: url('/public/fonts/overcame-bold.woff2') format('woff2'),
-       url('/public/fonts/overcame-bold.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Overcame Outline';
-  src: url('/public/fonts/overcame-outline.woff2') format('woff2'),
-       url('/public/fonts/overcame-outline.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
