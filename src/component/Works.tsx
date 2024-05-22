@@ -100,7 +100,7 @@ const Works = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="max-width">
+    <div id="work" className="max-width">
       <h1 className="mb-16 mt-10 text-5xl font-bold w-full flex justify-between items-center font-arenq">
       <span className="text-5xl">03.</span>
         <div className="flex gap-5 items-center">
