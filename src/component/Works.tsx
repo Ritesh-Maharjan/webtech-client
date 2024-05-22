@@ -101,7 +101,7 @@ const Works = () => {
 
   return (
     <div id="work" className="max-width">
-      <h1 className="mb-16 mt-10 text-5xl font-bold w-full flex justify-between items-center font-arenq">
+      <h1 className="mb-16 mt-10 px-4 text-5xl font-bold w-full flex justify-between items-center font-arenq">
       <span className="text-5xl">03.</span>
         <div className="flex gap-5 items-center">
             <Icon icon="material-symbols:workspace-premium-outline" width="50" height="50" style={{ color: 'orange' }} />
@@ -117,16 +117,16 @@ const Works = () => {
         slidesPerView={1}
         speed={1300} 
         effect="slide" 
-        autoplay={{ delay: 2000, disableOnInteraction: false }} // Autoplay every 10 seconds
+        autoplay={{ delay: 2000, disableOnInteraction: false }} //
         breakpoints={{
             640: {
-              slidesPerView: 1, // Show only one slide per view on smaller screens
+              slidesPerView: 1, 
             },
             768: {
-              slidesPerView: 2, // Show two slides per view on tablets
+              slidesPerView: 2, 
             },
             1024: {
-              slidesPerView: 3, // Show three slides per view on larger screens
+              slidesPerView: 3, 
             },
           }}
         loop={true}
