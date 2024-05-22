@@ -141,7 +141,7 @@ const Works = () => {
                   <img
                     src={work.featuredImage.source_url}
                     alt={work.featuredImage.alt_text}
-                    className="w-full h-[600px] object-cover"
+                    className="w-full h-[700px] object-cover"
                   />
                   </a>
                 )}

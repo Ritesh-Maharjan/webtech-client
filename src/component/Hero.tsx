@@ -31,7 +31,7 @@ const Hero = forwardRef<HTMLDivElement>((_, heroRef) => {
           initial={{ x: 200, opacity: 0.2, scale: 0.9 }}
           animate={{ x: 0, opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="text-right z-10"
+          className="text-right z-10 font-beckman"
         >
           Functionality
         </motion.h3>
