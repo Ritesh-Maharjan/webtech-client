@@ -71,7 +71,7 @@ const Service = forwardRef<HTMLDivElement, ServiceProps>(
     return (
       <div
         ref={ref}
-        className="max-width mb-24 h-fit lg:h-screen flex flex-wrap p-4"
+        className="max-width mb-24 h-fit xl:h-screen flex flex-wrap p-4"
         id="service"
       >
         <h2 className="flex items-center gap-2 my-6 text-4xl w-full font-bold">
