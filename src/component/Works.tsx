@@ -144,16 +144,12 @@ const Works = forwardRef<HTMLDivElement>((_, ref) => {
             <SwiperSlide key={work.id}>
               <article className="flex flex-col gap-10 p-4 hover:scale-105 transform transition-transform duration-300">
                 {work.featuredImage && (
-                  <a
-                    href={work.contentLink || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={work.featuredImage.source_url}
-                      alt={work.featuredImage.alt_text}
-                      className="w-full h-[600px] object-cover"
-                    />
+                  <a href={work.contentLink || '#'} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={work.featuredImage.source_url}
+                    alt={work.featuredImage.alt_text}
+                    className="w-full h-[600px] object-cover"
+                  />
                   </a>
                 )}
               </article>

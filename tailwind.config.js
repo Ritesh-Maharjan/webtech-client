@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        beckman: ['Beckman'],
+        beckman: ['Beckman','sans-serif'],
         arenq: ['Arenq'],
         mova: ['Mova'],
         overcameBold: ['Overcame Bold'],
