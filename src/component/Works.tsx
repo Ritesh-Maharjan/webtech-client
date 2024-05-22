@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import parse from 'html-react-parser';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { Icon } from '@iconify/react';
 
 interface WorkData {
   id: number;
@@ -100,7 +101,15 @@ const Works = () => {
 
   return (
     <div className="max-width">
-      <h1 className="my-6 text-4xl font-bold text- w-full">Works</h1>
+      <h1 className="mb-16 mt-10 text-5xl font-bold w-full flex justify-between items-center font-arenq">
+      <span className="text-5xl">03.</span>
+        <div className="flex gap-5 items-center">
+            <Icon icon="material-symbols:workspace-premium-outline" width="50" height="50" style={{ color: 'orange' }} />
+            <span className="text-5xl ">Works.</span>
+        </div>
+        
+      </h1>
+
       <Swiper
         pagination={{ clickable: true, el: '.swiper-pagination' }}
         modules={[Pagination]}
@@ -126,8 +135,7 @@ const Works = () => {
           {worksData.map((work) => (
             <SwiperSlide key={work.id}>
               <article
-                className="flex flex-col gap-8 p-4 hover:scale-105 transform transition-transform duration-300">
-                <h2 className="text-2xl">{work.title}</h2>
+                className="flex flex-col gap-10 p-4 hover:scale-105 transform transition-transform duration-300">
                 {work.featuredImage && (
                   <a href={work.contentLink || '#'} target="_blank" rel="noopener noreferrer">
                   <img
