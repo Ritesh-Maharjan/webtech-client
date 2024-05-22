@@ -3,9 +3,9 @@ import Header from "./Header";
 import HeroBg from "/hero-bg.png";
 import { motion } from "framer-motion";
 
-const Hero = forwardRef<HTMLDivElement>((_, heroRef) => {
+const Hero = forwardRef<HTMLDivElement>((_, ref) => {
   return (
-    <div id="hero" ref={heroRef} className="max-width relative flex items-center">
+    <div id="hero" ref={ref} className="max-width relative flex items-center">
       <Header />
       <div className="flex justify-between font-bold leading-loose relative tracking-wider flex-col uppercase w-full h-72 text-3xl xl:text-8xl p-4 gap-6 ">
         <motion.h3

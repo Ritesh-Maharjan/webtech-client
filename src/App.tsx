@@ -23,12 +23,13 @@ function App() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          console.log(entry)
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
           }
         });
       },
-      { threshold: 0.1 } 
+      { threshold: 0.4 }
     );
 
     if (heroRef.current) {
@@ -43,7 +44,6 @@ function App() {
       observer.observe(aboutRef.current);
     }
 
-
     if (workRef.current) {
       observer.observe(workRef.current);
     }
@@ -54,6 +54,7 @@ function App() {
 
     if (contactRef.current) {
       observer.observe(contactRef.current);
+      console.log(contactRef.current)
     }
 
     return () => {
