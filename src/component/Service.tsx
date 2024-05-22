@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useState } from "react";
 import parse from "html-react-parser";
 import { motion } from "framer-motion";
+import { Icon } from "@iconify/react/dist/iconify.js";
 interface ServiceData {
   id: number;
   title: { rendered: string };
@@ -73,7 +74,15 @@ const Service = forwardRef<HTMLDivElement, ServiceProps>(
         className="max-width mb-24 h-fit xl:h-screen flex flex-wrap p-4"
         id="service"
       >
-        <h2 className="my-6 text-4xl text-center w-full">Our Services</h2>
+        <h2 className="flex items-center gap-2 my-6 text-4xl w-full font-bold">
+          <Icon
+            icon="bi:fingerprint"
+            width="50"
+            height="50"
+            style={{ color: "orange" }}
+          />
+          Our Services
+        </h2>
         <section className="grid grid-cols-1 sm:grid-cols-2 pb-40 xl:flex gap-8 ">
           {services.map((service, index) => (
             <motion.article

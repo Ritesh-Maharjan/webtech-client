@@ -14,6 +14,8 @@ function App() {
   const heroRef = useRef<HTMLDivElement>(null);
   const serviceRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
+  const workRef = useRef<HTMLDivElement>(null);
+  const testimonialRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState("");
 
@@ -26,7 +28,7 @@ function App() {
           }
         });
       },
-      { threshold: 0.5 } // Adjust the threshold as needed
+      { threshold: 0.1 } 
     );
 
     if (heroRef.current) {
@@ -39,6 +41,15 @@ function App() {
 
     if (aboutRef.current) {
       observer.observe(aboutRef.current);
+    }
+
+
+    if (workRef.current) {
+      observer.observe(workRef.current);
+    }
+
+    if (testimonialRef.current) {
+      observer.observe(testimonialRef.current);
     }
 
     if (contactRef.current) {
@@ -55,6 +66,13 @@ function App() {
       }
       if (aboutRef.current) {
         observer.unobserve(aboutRef.current);
+      }
+      if (workRef.current) {
+        observer.unobserve(workRef.current);
+      }
+
+      if (testimonialRef.current) {
+        observer.unobserve(testimonialRef.current);
       }
       if (contactRef.current) {
         observer.unobserve(contactRef.current);
@@ -79,7 +97,7 @@ function App() {
         <Service ref={serviceRef} restBase={restBase} />
         <About ref={aboutRef} restBase={restBase} />
       </div>
-      <Works />
+      <Works ref={workRef} />
       <div
         style={{
           backgroundImage: `url(${background1})`,
@@ -89,10 +107,10 @@ function App() {
           position: "relative",
         }}
       >
-        <Testimonial />
+        <Testimonial ref={testimonialRef} restBase={restBase} />
         <Contact ref={contactRef} restBase={restBase} />
       </div>
-			<Hamburger />
+      <Hamburger />
     </div>
   );
 }

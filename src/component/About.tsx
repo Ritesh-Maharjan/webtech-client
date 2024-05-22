@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useState } from "react";
-import parse from "html-react-parser";
 import Staff from "./Staff";
-import Accordion from "./Accordion";
+import Rules from "./Rules";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 interface PageContent {
   id: number;
@@ -62,9 +62,20 @@ const About = forwardRef<HTMLDivElement, AboutProps>(({ restBase }, ref) => {
   }, [restBase]);
 
   return (
-    <div id="about" ref={ref} className="max-width h-fit p-4 lg:h-screen">
-      <h2 className="text-4xl my-6 text-center">About Us</h2>
-      {/* <div className="p-4 max-w-lg" dangerouslySetInnerHTML={{ __html: pageContent }} /> */}
+    <div
+      ref={ref}
+      id="about"
+      className="max-width h-fit p-4 pb-32 lg:pb-4 lg:h-screen"
+    >
+      <h2 className="flex items-center gap-2 my-2 text-4xl w-full font-bold">
+        <Icon
+          icon="bi:fingerprint"
+          width="50"
+          height="50"
+          style={{ color: "orange" }}
+        />
+        About Us
+      </h2>
 
       <div className="block lg:flex">
         {/* About Us Content */}
@@ -73,17 +84,21 @@ const About = forwardRef<HTMLDivElement, AboutProps>(({ restBase }, ref) => {
         </div>
         {/* First Section Staff Members */}
         <div className="w-full lg:w-1/2 pr-4">
-          <Staff firstStaff={staff[0]} secondStaff={staff[1]} />
+          <Staff firstStaff={staff[0]} secondStaff={staff[1]} section="first" />
         </div>
       </div>
 
       {/* Second Section Staff Members and Accordion */}
       <div className="w-full lg:w-full mt-4 block lg:flex">
         <div className="w-full lg:w-1/4 pr-4">
-          <Staff firstStaff={staff[2]} secondStaff={staff[3]} />
+          <Staff
+            firstStaff={staff[2]}
+            secondStaff={staff[3]}
+            section="second"
+          />
         </div>
         <div className="w-full lg:w-3/4">
-          <Accordion restBase={restBase} />
+          <Rules restBase={restBase} />
         </div>
       </div>
     </div>
