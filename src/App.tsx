@@ -7,6 +7,7 @@ import Testimonial from "./component/Testimonial";
 import Contact from "./component/Contact";
 import Works from "./component/Works";
 import background1 from "/bg-1.jpg";
+import Hamburger from "./component/Hamburger";
 // import background2 from "/bg-2.jpg";
 
 function App() {
@@ -91,6 +92,7 @@ function App() {
         <Testimonial />
         <Contact ref={contactRef} restBase={restBase} />
       </div>
+			<Hamburger />
     </div>
   );
 }
