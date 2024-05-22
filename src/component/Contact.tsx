@@ -94,12 +94,21 @@ const Contact = forwardRef<HTMLDivElement, { restBase: string }>(
       <section
         ref={ref}
         id="contact"
-        className="max-width overflow-auto h-fit lg:h-screen pb-32 lg:pb-0"
+        className="max-width h-fit p-4 pb-32 lg:pb-4 lg:h-screen"
       >
-        <div className="flex flex-col md:flex-row gap-8 md:gap-0 justify-between my-5 md:my-12">
-          <h2 className="text-4xl font-bold">Contact Us</h2>
-          <div className="flex flex-col gap-2 lg:px-4">
-            <h3 className="font-bold">Our Social Media</h3>
+        <div className="flex flex-col md:flex-row gap-8 md:gap-0 justify-between lg:items-center my-5 md:my-12">
+          <h2 className="flex items-center gap-2 my-6 text-4xl w-full font-bold">
+          <Icon
+            icon="bi:fingerprint"
+            width="50"
+            height="50"
+            style={{ color: "orange" }}
+          />
+          Contact Us
+        </h2>
+
+          <div className="flex flex-col gap-2 lg:items-center lg:px-4">
+            <h3 className="font-bold text-nowrap">Our Social Media</h3>
             <div className="flex gap-4">
               <a className="h-6" href={acfData?.instagram} target="_blank">
                 <Icon icon="skill-icons:instagram" height={"100%"} />

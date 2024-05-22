@@ -9,13 +9,14 @@ interface updatedStaffMember {
 interface StaffProps {
   firstStaff: updatedStaffMember;
   secondStaff: updatedStaffMember;
+  section: string;
 }
 
-const Staff: React.FC<StaffProps> = ({ firstStaff, secondStaff }) => {
+const Staff: React.FC<StaffProps> = ({ firstStaff, secondStaff, section }) => {
   if (!firstStaff && !secondStaff) return;
 
   return (
-    <div className={`flex w-fit h-fit gap-4 `}>
+    <div className={`flex mx-auto w-fit h-fit gap-4 ${section === 'second' && 'lg:flex-col'} `}>
       <div
         className="flex flex-col items-center justify-center gap-2"
       >

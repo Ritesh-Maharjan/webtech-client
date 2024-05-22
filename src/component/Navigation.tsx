@@ -1,6 +1,7 @@
 import React from "react";
 
 const Navigation: React.FC<{ activeSection: string }> = ({ activeSection }) => {
+  console.log(activeSection)
   return (
     <nav className="hidden lg:block fixed top-1/2 -translate-y-1/2 right-6 before:top-0 before:bg-gray-500 before:w-1 before:-right-4 before:block before:h-full before:rounded-full before:absolute z-50">
       <ul
@@ -8,6 +9,8 @@ const Navigation: React.FC<{ activeSection: string }> = ({ activeSection }) => {
           activeSection == "hero" && "before:top-0"
         } ${activeSection == "service" && "before:top-14"}
         ${activeSection == "about" && "before:top-28"}
+        ${activeSection == "work" && "before:top-44"}
+        ${activeSection == "testimonial" && "before:top-56"}
         ${activeSection == "contact" && "before:top-72"}
         `}
       >

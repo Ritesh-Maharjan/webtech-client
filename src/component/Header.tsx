@@ -6,7 +6,6 @@ export default function Header() {
       <a href="#">
         <img src={logo} alt="Logo WebTeck" className="h-[80px] w-[80px]" />
       </a>
-      <h2>Sun</h2>
     </div>
   );
 }
