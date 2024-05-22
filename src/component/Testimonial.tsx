@@ -57,7 +57,7 @@ const TestimonialComponent = forwardRef<HTMLDivElement, TestimonialProps>(({ res
   }, [restBase]);
 
   return (
-    <div className="max-width h-fit lg:h-screen content-center">
+    <div id="testimonial" className="max-width h-fit lg:h-screen content-center">
               
       <h1 className="my-6 text-4xl text-center w-full flex gap-5"><Icon icon="bi:fingerprint" width="50" height="50"  style={{ color: 'orange' }} />Testimonials</h1>
       <section className="grid grid-cols-1 sm:grid-cols-2">
