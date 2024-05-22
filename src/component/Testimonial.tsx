@@ -8,7 +8,7 @@ interface TestimonialData {
   content: { rendered: string };
 }
 
-// Define the type for your service data
+// Define the type for your testimonial data
 interface ContentData {
   type: string;
   content: any;  // Changed to any to accommodate various types of content
@@ -20,11 +20,11 @@ interface ParsedTestimonialData {
   contentData: ContentData[];
 }
 
-interface ServiceProps {
+interface TestimonialProps {
   restBase: string;
 }
 // ref
-const Service = forwardRef<HTMLDivElement, ServiceProps>(({ restBase }, ) => {
+const TestimonialComponent = forwardRef<HTMLDivElement, TestimonialProps>(({ restBase }, ) => {
   const [testimonialData, setTestimonialData] = useState<ParsedTestimonialData[]>([]);
 
   useEffect(() => {
@@ -88,11 +88,12 @@ const Service = forwardRef<HTMLDivElement, ServiceProps>(({ restBase }, ) => {
 
 const Testimonial = () => {
   return (
-    <Service restBase="https://riteshmaharjan.com/webtech/wp-json/wp/v2/" />
+    <TestimonialComponent restBase="https://riteshmaharjan.com/webtech/wp-json/wp/v2/" />
   );
 };
 
 export default Testimonial;
+
 
 
 
