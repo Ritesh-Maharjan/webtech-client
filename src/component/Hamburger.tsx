@@ -9,7 +9,7 @@ export default function Hamburger() {
 
   return (
     <>
-      <div className="sticky bottom-0 left-0 lg:hidden">
+      <div className="sticky bottom-0 right-0 w-fit lg:hidden">
         <button
           className="relative group"
           onClick={toggleMenu}
