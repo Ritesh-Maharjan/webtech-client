@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Icon, _api } from "@iconify/react/dist/iconify.js";
 import formatPhoneNumber from "../helperfunc";
+import Popup from "./Popup";
 
 interface ContactData {
   contactforminfo: string;
@@ -25,6 +26,7 @@ const validationSchema = Yup.object({
 const Contact = forwardRef<HTMLDivElement, { restBase: string }>(
   ({ restBase }, ref) => {
     const [acfData, setAcfData] = useState<ContactData>();
+    const [popupMessage, setPopupMessage] = useState<string>("");
     useEffect(() => {
       const fetchContactData = async () => {
         try {
@@ -75,7 +77,7 @@ const Contact = forwardRef<HTMLDivElement, { restBase: string }>(
 
           const result = await response.json();
           if (result.status === "mail_sent") {
-            setStatus("Form submitted successfully!");
+            setPopupMessage(result.message);
             resetForm();
           } else {
             setStatus("Failed to submit the form.");
@@ -109,8 +111,18 @@ const Contact = forwardRef<HTMLDivElement, { restBase: string }>(
           </div>
         </div>
 
+        {popupMessage && (
+          <Popup
+            popupMessage={popupMessage}
+            setPopupMessage={setPopupMessage}
+          />
+        )}
+
         <div className="flex flex-col md:flex-row gap-12 lg:gap-32 mt-14 lg:mt-0 lg:px-10 lg:h-[70vh] lg:items-center">
           <div className="flex-1 flex gap-10 flex-col">
+            <h3 className="text-xl lg:text-2xl font-bold">
+              Interested In Working Together
+            </h3>
             <p>{acfData?.contactforminfo}</p>
 
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-8">
@@ -216,7 +228,7 @@ const Contact = forwardRef<HTMLDivElement, { restBase: string }>(
 
             <div>
               <button
-                className="bg-yellow-500 py-1 px-2"
+                className="bg-yellow-500 rounded-md hover:bg-yellow-500/50 hover:text-gray-200 text-gray-800 py-1.5 px-3"
                 type="submit"
                 disabled={isSubmitting}
               >
