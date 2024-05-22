@@ -12,7 +12,6 @@
     scroll-behavior: smooth;
     -moz-scroll-snap-type: y mandatory; /* Firefox */
     scrollbar-width: none;
-    padding: 0.5rem 1rem;
   }
 
   .scroll-container::-webkit-scrollbar {
@@ -27,7 +26,6 @@
     -moz-scroll-snap-align: start; /* Firefox */
     height: 100vh;
   }
-  
 }
 
 body {
