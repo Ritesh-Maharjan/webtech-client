@@ -2,7 +2,6 @@
 import React from "react";
 
 interface updatedStaffMember {
-  id: number;
   name: string;
   source_url: string;
 }
@@ -10,7 +9,6 @@ interface updatedStaffMember {
 interface StaffProps {
   firstStaff: updatedStaffMember;
   secondStaff: updatedStaffMember;
-  section: string;
 }
 
 const Staff: React.FC<StaffProps> = ({ firstStaff, secondStaff }) => {
@@ -19,7 +17,6 @@ const Staff: React.FC<StaffProps> = ({ firstStaff, secondStaff }) => {
   return (
     <div className={`flex w-fit h-fit gap-4 `}>
       <div
-        key={firstStaff.id}
         className="flex flex-col items-center justify-center gap-2"
       >
         <h3 className="lg:text-2xl">{firstStaff.name}</h3>
@@ -32,7 +29,6 @@ const Staff: React.FC<StaffProps> = ({ firstStaff, secondStaff }) => {
         )}
       </div>
       <div
-        key={secondStaff.id}
         className="flex flex-col items-center justify-center gap-2"
       >
         <h3 className="lg:text-2xl">{secondStaff.name}</h3>
