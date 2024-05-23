@@ -108,11 +108,11 @@ const Works = forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <div ref={ref} id="work" className="max-width mb-24 h-fit xl:h-screen flex flex-wrap p-4">
-      <h2 className="flex items-center gap-2 my-6 text-4xl w-full font-bold">
+    <h2 className="flex items-center gap-2 my-6 text-4xl md:text-6xl w-full font-bold uppercase font-mova">
         <Icon
-          icon="bi:fingerprint"
-          width="50"
-          height="50"
+          icon="ic:outline-workspace-premium"
+          width="60"
+          height="60"
           style={{ color: "orange" }}
         />
         Our Works
@@ -156,8 +156,8 @@ const Works = forwardRef<HTMLDivElement>((_, ref) => {
             </SwiperSlide>
           ))}
         </section>
-        <div className="swiper-pagination mt-4 text-orange-500 !important">
-          <span className="swiper-pagination-bullet-active text-orange-500 !important"></span>
+        <div className="swiper-pagination -mt-12">
+          <span className="swiper-pagination-bullet-active"></span>
         </div>
       </Swiper>
     </div>

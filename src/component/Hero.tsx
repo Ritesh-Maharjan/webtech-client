@@ -21,7 +21,7 @@ const Hero = forwardRef<HTMLDivElement>((_, ref) => {
           initial={{ x: -100, opacity: 0.2, scale: 0.6 }}
           animate={{ x: 0, opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className=" text-center z-10"
+          className=" text-center z-10 font-mova"
 
         >
           &
