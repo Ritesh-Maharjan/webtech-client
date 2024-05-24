@@ -108,7 +108,7 @@ const Works = forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <div ref={ref} id="work" className="max-width mb-24 h-fit xl:h-screen flex flex-wrap p-4">
-    <h2 className="flex items-center gap-2 my-6 text-4xl md:text-6xl w-full font-bold uppercase font-mova">
+    <h2 className="flex items-center gap-2 my-6 text-4xl md:text-5xl w-full font-bold">
         <Icon
           icon="ic:outline-workspace-premium"
           width="60"
@@ -123,7 +123,7 @@ const Works = forwardRef<HTMLDivElement>((_, ref) => {
         modules={[Pagination]}
         className="mySwiper w-full"
         slidesPerView={1}
-        speed={1300}
+        speed={1100}
         effect="slide"
         autoplay={{ delay: 2000, disableOnInteraction: false }} //
         breakpoints={{
@@ -158,6 +158,7 @@ const Works = forwardRef<HTMLDivElement>((_, ref) => {
         </section>
         <div className="swiper-pagination -mt-12">
           <span className="swiper-pagination-bullet-active"></span>
+          <span className="swiper-pagination-bullet bg-white !important"></span>
         </div>
       </Swiper>
     </div>

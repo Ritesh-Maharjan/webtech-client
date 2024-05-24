@@ -67,7 +67,7 @@ const About = forwardRef<HTMLDivElement, AboutProps>(({ restBase }, ref) => {
       id="about"
       className="max-width h-fit p-4 pb-32 lg:pb-4 lg:h-screen"
     >
-      <h2 className="flex items-center gap-2 my-2 text-4xl w-full font-bold">
+      <h2 className="flex items-center gap-2 my-2 text-4xl md:text-5xl w-full font-bold">
         <Icon
           icon="bi:fingerprint"
           width="50"
