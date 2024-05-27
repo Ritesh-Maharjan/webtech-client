@@ -118,7 +118,7 @@ const Service = forwardRef<HTMLDivElement, ServiceProps>(({ restBase }, ref) => 
             key={service.id}
             className="flex flex-col shadow-cyan-500/50 gap-4 p-4 py-20 hover:shadow-orange-400/60 shadow-xl h-full"
           >
-            {console.log(service)}
+            
             {service.featured_image_url && (
               <img
                 src={service.featured_image_url}
