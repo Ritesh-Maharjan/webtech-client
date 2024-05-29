@@ -125,6 +125,7 @@ const Service = forwardRef<HTMLDivElement, ServiceProps>(({ restBase }, ref) => 
                 alt={service.title}
                 width="50"
                 height="50"
+                className="filter invert" // Apply Tailwind filter and invert classes
                 style={{ marginBottom: "1rem" }}
               />
             )}

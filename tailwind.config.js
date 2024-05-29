@@ -11,6 +11,9 @@ export default {
         overcameOutline: ['Overcame Outline'],
         poppins: ['Poppins', 'sans-serif'],
       },
+      filter: {
+        'white': 'invert(1)',
+      },
     },
   },
   plugins: [],
