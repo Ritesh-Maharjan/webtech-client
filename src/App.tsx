@@ -56,7 +56,7 @@ function App() {
 
   const restBase = `https://riteshmaharjan.com/webtech/wp-json/wp/v2/`;
   return (
-    <div className="bg-black text-white scroll-container">
+    <div className="bg-black text-white">
       <Hero ref={heroRef} />
       <div
         style={{
@@ -64,7 +64,6 @@ function App() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           position: "relative",
-          width: "100vw",
         }}
       >
         <Navigation activeSection={activeSection} />
@@ -77,14 +76,14 @@ function App() {
           backgroundImage: `url(${background1})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          width: "100vw",
           position: "relative",
+          overflow: "hidden"
         }}
       >
         <Testimonial ref={testimonialRef} restBase={restBase} />
         <Contact ref={contactRef} restBase={restBase} />
       </div>
-      <Hamburger />
+      {/* <Hamburger /> */}
     </div>
   );
 }

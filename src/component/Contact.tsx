@@ -134,7 +134,7 @@ const Contact = forwardRef<HTMLDivElement, { restBase: string }>(
             </h3>
             <p className="lg:text-xl">{acfData?.contactforminfo}</p>
 
-            <div className="flex flex-col gap-4 lg:gap-8 lg:text-xl">
+            <div className="flex flex-col gap-4 lg:gap-8">
               <a href={`mailto:${acfData?.email}`} className="flex gap-2 items-center">
                 <Icon icon="iconoir:mail" height={"30px"} />
                 {acfData?.email}
