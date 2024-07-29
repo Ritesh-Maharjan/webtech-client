@@ -3,46 +3,31 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Arenq';
-  src: url('/fonts/arenq.otf');
+  font-family: "Arenq";
+  src: url("/fonts/arenq.otf");
 }
 
 @font-face {
-  font-family: 'Beckman';
-  src: url('/fonts/beckman.otf');
+  font-family: "Beckman";
+  src: url("/fonts/beckman.otf");
 }
 
 @font-face {
-  font-family: 'Mova';
-  src: url('/fonts/mova.otf');
+  font-family: "Mova";
+  src: url("/fonts/mova.otf");
 }
 
 @font-face {
-  font-family: 'Overcame Bold';
-  src: url('/fonts/overcame-bold.woff');
+  font-family: "Overcame Bold";
+  src: url("/fonts/overcame-bold.woff");
 }
 
 @font-face {
-  font-family: 'Overcame Outline';
-  src: url('/fonts/overcame-outline.woff');
+  font-family: "Overcame Outline";
+  src: url("/fonts/overcame-outline.woff");
 }
 
 @layer components {
-  .scroll-container {
-    height: 100vh;
-    width: 100vw;
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    -moz-scroll-snap-type: y mandatory; /* Firefox */
-    scrollbar-width: none;
-  }
-
-  .scroll-container::-webkit-scrollbar {
-    display: none;
-  }
-
   .max-width {
     max-width: 1280px;
     margin: 0 auto;
@@ -51,11 +36,14 @@
     -moz-scroll-snap-align: start; /* Firefox */
     height: 100vh;
   }
+
+  .swiper-pagination-bullet {
+    background-color: red;
+    opacity: 0.7;
+  }
+
+  .swiper-pagination-bullet-active{
+    background-color: #007aff;
+    opacity: 1;
+  }
 }
-
-body {
-  scroll-snap-type: y mandatory; /* Optional for smoother snapping */
-  scroll-behavior: smooth;
-}
-
-

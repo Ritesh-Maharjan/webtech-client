@@ -127,14 +127,14 @@ const Contact = forwardRef<HTMLDivElement, { restBase: string }>(
           />
         )}
 
-        <div className="flex flex-col md:flex-row gap-12 lg:gap-32 mt-14 lg:mt-0 lg:px-10 lg:h-[70vh] lg:items-center">
+        <div className="flex flex-col md:flex-row gap-12 lg:gap-32 mt-14 ">
           <div className="flex-1 flex gap-10 flex-col">
             <h3 className="text-xl lg:text-2xl font-bold">
               Interested In Working Together
             </h3>
-            <p>{acfData?.contactforminfo}</p>
+            <p className="lg:text-xl">{acfData?.contactforminfo}</p>
 
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-8">
+            <div className="flex flex-col gap-4 lg:gap-8 lg:text-xl">
               <a href={`mailto:${acfData?.email}`} className="flex gap-2 items-center">
                 <Icon icon="iconoir:mail" height={"30px"} />
                 {acfData?.email}

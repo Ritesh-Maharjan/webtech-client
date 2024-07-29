@@ -103,12 +103,34 @@ const Works = forwardRef<HTMLDivElement>((_, ref) => {
     error,
   } = useFetchWorks(restBase, "webtech-work");
 
-  if (loading) return <div ref={ref} id="work" className="max-width mb-24 h-fit xl:h-screen flex flex-wrap p-4">Loading...</div>;
-  if (error) return <div ref={ref} id="work" className="max-width mb-24 h-fit xl:h-screen flex flex-wrap p-4">Error: {error.message}</div>;
+  if (loading)
+    return (
+      <div
+        ref={ref}
+        id="work"
+        className="max-width mb-24 h-fit xl:h-screen flex flex-wrap p-4"
+      >
+        Loading...
+      </div>
+    );
+  if (error)
+    return (
+      <div
+        ref={ref}
+        id="work"
+        className="max-width mb-24 h-fit xl:h-screen flex flex-wrap p-4"
+      >
+        Error: {error.message}
+      </div>
+    );
 
   return (
-    <div ref={ref} id="work" className="max-width mb-24 h-fit xl:h-screen flex flex-wrap p-4">
-    <h2 className="flex items-center gap-2 my-6 text-4xl md:text-5xl w-full font-bold">
+    <div
+      ref={ref}
+      id="work"
+      className="max-width mb-24 h-fit xl:h-screen flex flex-wrap p-4"
+    >
+      <h2 className="flex items-center gap-2 my-6 text-4xl md:text-5xl w-full font-bold">
         <Icon
           icon="ic:outline-workspace-premium"
           width="60"
@@ -144,21 +166,25 @@ const Works = forwardRef<HTMLDivElement>((_, ref) => {
             <SwiperSlide key={work.id}>
               <article className="flex flex-col gap-10 p-4 hover:scale-105 transform transition-transform duration-300">
                 {work.featuredImage && (
-                  <a href={work.contentLink || '#'} target="_blank" rel="noopener noreferrer">
-                  <img
-                    src={work.featuredImage.source_url}
-                    alt={work.featuredImage.alt_text}
-                    className="w-full h-[600px] object-cover"
-                  />
+                  <a
+                    href={work.contentLink || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src={work.featuredImage.source_url}
+                      alt={work.featuredImage.alt_text}
+                      className="w-full h-[400px] object-cover"
+                    />
                   </a>
                 )}
               </article>
             </SwiperSlide>
           ))}
         </section>
-        <div className="swiper-pagination -mt-12">
+        <div className="swiper-pagination ">
           <span className="swiper-pagination-bullet-active"></span>
-          <span className="swiper-pagination-bullet bg-white !important"></span>
+          <span className="swiper-pagination-bullet"></span>
         </div>
       </Swiper>
     </div>
