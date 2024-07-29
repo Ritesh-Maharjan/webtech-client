@@ -70,7 +70,7 @@ const Testimonial = forwardRef<HTMLDivElement, TestimonialProps>(
       <div
         id="testimonial"
         ref={ref}
-        className="max-width mb-24 h-fit lg:h-screen flex flex-wrap p-4"
+        className="max-width flex flex-wrap p-4"
       >
         <h2 className="flex items-center gap-2 my-6 text-4xl md:text-5xl w-full font-bold">
           <Icon
