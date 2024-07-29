@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { Icon, _api } from "@iconify/react/dist/iconify.js";
 import formatPhoneNumber from "../helperfunc";
 import Popup from "./Popup";
+import { motion } from 'framer-motion';
 
 interface ContactData {
   contactforminfo: string;
@@ -37,9 +38,28 @@ const Contact = forwardRef<HTMLDivElement, { restBase: string }>(
           console.log(err);
         }
       };
-
       fetchContactData();
     }, []);
+		const fadeInAnimationLeft = {
+			initial: {
+				opacity: 0,
+				x: -20,
+			},
+			animate: () => ({
+				opacity: 1, transition: { duration: 1.5 },
+				x: 0,
+			})
+		}
+		const fadeInAnimationRight = {
+			initial: {
+				opacity: 0,
+				x: 20,
+			},
+			animate: () => ({
+				opacity: 1, transition: { duration: 1.5 }, 
+				x: 0,
+			})
+    }
 
     const {
       values,
@@ -128,7 +148,11 @@ const Contact = forwardRef<HTMLDivElement, { restBase: string }>(
         )}
 
         <div className="flex flex-col md:flex-row gap-12 lg:gap-32 mt-14 ">
-          <div className="flex-1 flex gap-10 flex-col">
+          <motion.div className="flex-1 flex gap-10 flex-col"
+						variants={fadeInAnimationLeft}
+						initial="initial"
+						whileInView="animate"
+						>
             <h3 className="text-xl lg:text-2xl font-bold">
               Interested In Working Together
             </h3>
@@ -145,11 +169,14 @@ const Contact = forwardRef<HTMLDivElement, { restBase: string }>(
                   formatPhoneNumber(acfData?.phonenumber)}
               </a>
             </div>
-          </div>
+          </motion.div>
 
-          <form
+          <motion.form
             className="flex-1 flex gap-8 pr-10 flex-col h-fit"
             onSubmit={handleSubmit}
+						variants={fadeInAnimationRight}
+						initial="initial"
+            whileInView="animate"
           >
             <h3 className="text-xl lg:text-2xl font-bold">
               Lets Work Together
@@ -245,7 +272,7 @@ const Contact = forwardRef<HTMLDivElement, { restBase: string }>(
               </button>
             </div>
             {status && <p>{status}</p>}
-          </form>
+          </motion.form>
         </div>
       </section>
     );

@@ -30,7 +30,7 @@ export default function Hamburger() {
         </button>
       </div>
 
-      <div className={`fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-75 z-50 ${isOpen ? "block" : "hidden"}`} onClick={toggleMenu}></div>
+      <div className={`fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-[90%] z-50 ${isOpen ? "block" : "hidden"}`} onClick={toggleMenu}></div>
 
       <div className={`fixed top-0 left-0 w-screen h-screen flex justify-center items-center z-50 ${isOpen ? "block" : "hidden"}`} onClick={toggleMenu}>
         <ul className="text-white">
