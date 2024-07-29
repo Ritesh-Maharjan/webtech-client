@@ -3,47 +3,47 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Arenq";
-  src: url("/fonts/arenq.otf");
+	font-family: 'Arenq';
+	src: url('/fonts/arenq.otf');
 }
 
 @font-face {
-  font-family: "Beckman";
-  src: url("/fonts/beckman.otf");
+	font-family: 'Beckman';
+	src: url('/fonts/beckman.otf');
 }
 
 @font-face {
-  font-family: "Mova";
-  src: url("/fonts/mova.otf");
+	font-family: 'Mova';
+	src: url('/fonts/mova.otf');
 }
 
 @font-face {
-  font-family: "Overcame Bold";
-  src: url("/fonts/overcame-bold.woff");
+	font-family: 'Overcame Bold';
+	src: url('/fonts/overcame-bold.woff');
 }
 
 @font-face {
-  font-family: "Overcame Outline";
-  src: url("/fonts/overcame-outline.woff");
+	font-family: 'Overcame Outline';
+	src: url('/fonts/overcame-outline.woff');
 }
 
 @layer components {
-  .max-width {
-    max-width: 1280px;
-    margin: 0 auto;
-    overflow: hidden;
-    scroll-snap-align: start;
-    -moz-scroll-snap-align: start; /* Firefox */
-    height: 100vh;
-  }
+	.max-width {
+		max-width: 1280px;
+		margin: 0 auto;
+		overflow: hidden;
+		scroll-snap-align: start;
+		-moz-scroll-snap-align: start; /* Firefox */
+		height: 100vh;
+	}
 
-  .swiper-pagination-bullet {
-    background-color: red;
-    opacity: 0.7;
-  }
+	.swiper-pagination-bullet {
+		background-color: orange;
+		opacity: 0.7;
+	}
 
-  .swiper-pagination-bullet-active{
-    background-color: #007aff;
-    opacity: 1;
-  }
+	.swiper-pagination-bullet-active {
+		background-color: #007aff;
+		opacity: 1;
+	}
 }

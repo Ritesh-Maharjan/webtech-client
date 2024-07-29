@@ -2,6 +2,7 @@ import { forwardRef, useEffect, useState } from "react";
 import Staff from "./Staff";
 import Rules from "./Rules";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { motion } from 'framer-motion';
 
 interface PageContent {
   id: number;
@@ -20,6 +21,22 @@ interface Staff {
 const About = forwardRef<HTMLDivElement, AboutProps>(({ restBase }, ref) => {
   const [pageContent, setPageContent] = useState<string>("");
   const [staff, setStaff] = useState<Staff[]>([]);
+	const fadeInAnimationLeft = {
+		initial: { opacity: 0, x: 10 },
+    animate: () => ({
+      opacity: 1,
+      x: 0,
+      transition: { duration:1 , delay: 0.2 },
+    }),
+	}
+	const fadeInAnimationBottom = {
+		initial: { opacity: 0, y: 15 },
+    animate: () => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration:1 , delay: 0.2 },
+    }),
+	}
 
   useEffect(() => {
     const fetchPageContent = async () => {
@@ -77,7 +94,13 @@ const About = forwardRef<HTMLDivElement, AboutProps>(({ restBase }, ref) => {
         About Us
       </h2>
 
-      <div className="block lg:flex">
+      <motion.div className="block lg:flex"
+					variants={fadeInAnimationLeft}
+					initial="initial"
+          whileInView="animate"
+					
+
+			>
         {/* About Us Content */}
         <div className="w-full md:text-justify lg:w-1/2 p-4">
           <div dangerouslySetInnerHTML={{ __html: pageContent }} />
@@ -86,10 +109,15 @@ const About = forwardRef<HTMLDivElement, AboutProps>(({ restBase }, ref) => {
         <div className="w-full lg:w-1/2 pr-4">
           <Staff firstStaff={staff[0]} secondStaff={staff[1]} section="first" />
         </div>
-      </div>
+      </motion.div>
 
       {/* Second Section Staff Members and Accordion */}
-      <div className="w-full lg:w-full mt-4 block lg:flex">
+      <motion.div className="w-full lg:w-full mt-4 block lg:flex"
+				variants={fadeInAnimationBottom}
+				initial="initial"
+				whileInView="animate"
+				
+			>
         <div className="w-full lg:w-1/4 pr-4">
           <Staff
             firstStaff={staff[2]}
@@ -100,7 +128,7 @@ const About = forwardRef<HTMLDivElement, AboutProps>(({ restBase }, ref) => {
         <div className="w-full lg:w-3/4">
           <Rules restBase={restBase} />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 });

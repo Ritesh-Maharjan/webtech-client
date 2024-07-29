@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useState } from "react";
 import parse from "html-react-parser";
 import { Icon } from "@iconify/react";
+import { motion } from 'framer-motion';
 
 interface TestimonialData {
   id: number;
@@ -29,6 +30,10 @@ const Testimonial = forwardRef<HTMLDivElement, TestimonialProps>(
     const [testimonialData, setTestimonialData] = useState<
       ParsedTestimonialData[]
     >([]);
+		const fadeInAnimation = {
+      initial: { opacity: 0 },
+      animate: { opacity: 1, transition: { duration: 1 } },
+    };
 
     useEffect(() => {
       fetch(`${restBase}webtech-testimonial`)
@@ -79,7 +84,10 @@ const Testimonial = forwardRef<HTMLDivElement, TestimonialProps>(
 
         <section className="grid grid-cols-1 sm:grid-cols-2">
           {testimonialData.map((testimonial) => (
-            <article
+            <motion.article
+							variants={fadeInAnimation}
+							initial="initial"
+              whileInView="animate"
               key={testimonial.id}
               className="flex flex-col gap-4 p-4 lg:gap-1 hover:scale-105 transform transition-transform duration-300"
             >
@@ -123,7 +131,7 @@ const Testimonial = forwardRef<HTMLDivElement, TestimonialProps>(
               <h3 className="font-semibold text-xl h-fit md:h-12">
                 {testimonial.title}
               </h3>
-            </article>
+            </motion.article>
           ))}
         </section>
       </div>
